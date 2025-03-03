@@ -1,0 +1,175 @@
+--altsyncram ACF_BLOCK_RAM_AND_MLAB_EQUIVALENT_PAUSED_READ_CAPABILITIES="CARE" ADDRESS_ACLR_B="NONE" ADDRESS_REG_B="CLOCK0" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_INPUT_B="BYPASS" CLOCK_ENABLE_OUTPUT_B="BYPASS" CYCLONEII_M4K_COMPATIBILITY="ON" DEVICE_FAMILY="CYCLONEV" LOW_POWER_MODE="AUTO" NUMWORDS_A=32 NUMWORDS_B=32 OPERATION_MODE="DUAL_PORT" OUTDATA_ACLR_B="NONE" OUTDATA_REG_B="UNREGISTERED" POWER_UP_UNINITIALIZED="FALSE" RAM_BLOCK_TYPE="MLAB" WIDTH_A=9 WIDTH_B=9 WIDTH_BYTEENA_A=1 WIDTHAD_A=5 WIDTHAD_B=5 address_a address_b clock0 data_a q_b wren_a CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
+--VERSION_BEGIN 13.1 cbx_altsyncram 2013:10:23:18:05:48:SJ cbx_cycloneii 2013:10:23:18:05:48:SJ cbx_lpm_add_sub 2013:10:23:18:05:48:SJ cbx_lpm_compare 2013:10:23:18:05:48:SJ cbx_lpm_decode 2013:10:23:18:05:48:SJ cbx_lpm_mux 2013:10:23:18:05:48:SJ cbx_mgl 2013:10:23:18:06:54:SJ cbx_stratix 2013:10:23:18:05:48:SJ cbx_stratixii 2013:10:23:18:05:48:SJ cbx_stratixiii 2013:10:23:18:05:48:SJ cbx_stratixv 2013:10:23:18:05:48:SJ cbx_util_mgl 2013:10:23:18:05:48:SJ  VERSION_END
+
+
+-- Copyright (C) 1991-2013 Altera Corporation
+--  Your use of Altera Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Altera Program License 
+--  Subscription Agreement, Altera MegaCore Function License 
+--  Agreement, or other applicable license agreement, including, 
+--  without limitation, that your use is for the sole purpose of 
+--  programming logic devices manufactured by Altera and sold by 
+--  Altera or its authorized distributors.  Please refer to the 
+--  applicable agreement for further details.
+
+
+FUNCTION cyclonev_mlab_cell (clk0, clk1, clr, ena0, ena1, ena2, portaaddr[address_width-1..0], portabyteenamasks[byte_enable_mask_width-1..0], portadatain[data_width-1..0], portbaddr[address_width-1..0])
+WITH ( address_width = 1, byte_enable_mask_width = 2, data_width = 1, first_address, first_bit_number, init_file, last_address, logical_ram_depth, logical_ram_name, logical_ram_width, mem_init0, mixed_port_feed_through_mode, port_b_data_out_clear, port_b_data_out_clock)
+RETURNS ( portbdataout[data_width-1..0]);
+
+--synthesis_resources = MLAB 1 reg 5 
+OPTIONS ALTERA_INTERNAL_OPTION = "OPTIMIZE_POWER_DURING_SYNTHESIS=NORMAL_COMPILATION;{-to rdaddr_reg} PRESERVE_REGISTER=ON";
+
+SUBDESIGN altsyncram_8lr1
+( 
+	address_a[4..0]	:	input;
+	address_b[4..0]	:	input;
+	clock0	:	input;
+	data_a[8..0]	:	input;
+	q_b[8..0]	:	output;
+	wren_a	:	input;
+) 
+VARIABLE 
+	rdaddr_reg[4..0] : dffe;
+	lutrama0 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 0,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama1 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 1,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama2 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 2,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama3 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 3,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama4 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 4,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama5 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 5,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama6 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 6,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama7 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 7,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	lutrama8 : cyclonev_mlab_cell
+		WITH (
+			address_width = 5,
+			data_width = 1,
+			first_address = 0,
+			first_bit_number = 8,
+			last_address = 31,
+			logical_ram_depth = 32,
+			logical_ram_name = "ALTDPRAM_INSTANCE",
+			logical_ram_width = 9,
+			mixed_port_feed_through_mode = "dont care"
+		);
+	datain_wire[8..0]	: WIRE;
+	dataout_wire[8..0]	: WIRE;
+	rdaddr_wire[4..0]	: WIRE;
+	wr_en	: WIRE;
+	wraddr_wire[4..0]	: WIRE;
+
+BEGIN 
+	rdaddr_reg[].clk = clock0;
+	rdaddr_reg[].d = address_b[];
+	lutrama[8..0].clk0 = clock0;
+	lutrama[8..0].ena0 = wr_en;
+	lutrama[8..0].portaaddr[4..0] = wraddr_wire[4..0];
+	lutrama[0].portadatain[0..0] = datain_wire[0..0];
+	lutrama[1].portadatain[0..0] = datain_wire[1..1];
+	lutrama[2].portadatain[0..0] = datain_wire[2..2];
+	lutrama[3].portadatain[0..0] = datain_wire[3..3];
+	lutrama[4].portadatain[0..0] = datain_wire[4..4];
+	lutrama[5].portadatain[0..0] = datain_wire[5..5];
+	lutrama[6].portadatain[0..0] = datain_wire[6..6];
+	lutrama[7].portadatain[0..0] = datain_wire[7..7];
+	lutrama[8].portadatain[0..0] = datain_wire[8..8];
+	lutrama[8..0].portbaddr[4..0] = rdaddr_wire[4..0];
+	datain_wire[] = data_a[];
+	dataout_wire[] = lutrama[8..0].portbdataout[];
+	q_b[] = dataout_wire[];
+	rdaddr_wire[] = rdaddr_reg[].q;
+	wr_en = wren_a;
+	wraddr_wire[] = address_a[];
+END;
+--VALID FILE

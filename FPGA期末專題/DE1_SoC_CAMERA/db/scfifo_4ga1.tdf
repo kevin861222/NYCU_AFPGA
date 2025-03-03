@@ -1,0 +1,52 @@
+--scfifo ADD_RAM_OUTPUT_REGISTER="ON" DEVICE_FAMILY="Cyclone V" LPM_NUMWORDS=32 LPM_SHOWAHEAD="ON" LPM_WIDTH=41 LPM_WIDTHU=5 OPTIMIZE_FOR_SPEED=5 OVERFLOW_CHECKING="OFF" UNDERFLOW_CHECKING="OFF" USE_EAB="ON" aclr clock data empty full q rdreq sclr(gnd) wrreq ACF_BLOCK_RAM_AND_MLAB_EQUIVALENT_PAUSED_READ_CAPABILITIES="CARE" CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48 CYCLONEII_M4K_COMPATIBILITY="ON" INTENDED_DEVICE_FAMILY="Stratix IV" LOW_POWER_MODE="AUTO"
+--VERSION_BEGIN 13.1 cbx_altdpram 2013:10:23:18:05:48:SJ cbx_altsyncram 2013:10:23:18:05:48:SJ cbx_cycloneii 2013:10:23:18:05:48:SJ cbx_fifo_common 2013:10:23:18:05:48:SJ cbx_lpm_add_sub 2013:10:23:18:05:48:SJ cbx_lpm_compare 2013:10:23:18:05:48:SJ cbx_lpm_counter 2013:10:23:18:05:48:SJ cbx_lpm_decode 2013:10:23:18:05:48:SJ cbx_lpm_mux 2013:10:23:18:05:48:SJ cbx_mgl 2013:10:23:18:06:54:SJ cbx_scfifo 2013:10:23:18:05:48:SJ cbx_stratix 2013:10:23:18:05:48:SJ cbx_stratixii 2013:10:23:18:05:48:SJ cbx_stratixiii 2013:10:23:18:05:48:SJ cbx_stratixv 2013:10:23:18:05:48:SJ cbx_util_mgl 2013:10:23:18:05:48:SJ  VERSION_END
+
+
+-- Copyright (C) 1991-2013 Altera Corporation
+--  Your use of Altera Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Altera Program License 
+--  Subscription Agreement, Altera MegaCore Function License 
+--  Agreement, or other applicable license agreement, including, 
+--  without limitation, that your use is for the sole purpose of 
+--  programming logic devices manufactured by Altera and sold by 
+--  Altera or its authorized distributors.  Please refer to the 
+--  applicable agreement for further details.
+
+
+FUNCTION a_dpfifo_dr91 (aclr, clock, data[40..0], rreq, sclr, wreq)
+RETURNS ( empty, full, q[40..0]);
+
+--synthesis_resources = lut 14 M10K 2 reg 27 
+SUBDESIGN scfifo_4ga1
+( 
+	aclr	:	input;
+	clock	:	input;
+	data[40..0]	:	input;
+	empty	:	output;
+	full	:	output;
+	q[40..0]	:	output;
+	rdreq	:	input;
+	sclr	:	input;
+	wrreq	:	input;
+) 
+VARIABLE 
+	dpfifo : a_dpfifo_dr91;
+	const_node_sclr	: NODE;
+
+BEGIN 
+	dpfifo.aclr = aclr;
+	dpfifo.clock = clock;
+	dpfifo.data[] = data[];
+	dpfifo.rreq = rdreq;
+	dpfifo.sclr = sclr;
+	dpfifo.wreq = wrreq;
+	empty = dpfifo.empty;
+	full = dpfifo.full;
+	q[] = dpfifo.q[];
+	const_node_sclr = sclr;
+END;
+--VALID FILE

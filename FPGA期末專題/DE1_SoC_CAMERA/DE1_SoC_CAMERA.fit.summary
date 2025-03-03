@@ -1,0 +1,19 @@
+Fitter Status : Successful - Tue Jan 10 13:20:44 2023
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : DE1_SoC_CAMERA
+Top-level Entity Name : DE1_SoC_CAMERA
+Family : Cyclone V
+Device : 5CSEMA5F31C6
+Timing Models : Preliminary
+Logic utilization (in ALMs) : 818 / 32,070 ( 3 % )
+Total registers : 1267
+Total pins : 226 / 457 ( 49 % )
+Total virtual pins : 0
+Total block memory bits : 59,344 / 4,065,280 ( 1 % )
+Total DSP Blocks : 0 / 87 ( 0 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI TX Channels : 0
+Total PLLs : 1 / 6 ( 17 % )
+Total DLLs : 0 / 4 ( 0 % )

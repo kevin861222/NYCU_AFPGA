@@ -1,0 +1,18 @@
+
+State Machine - |DE1_SoC_CAMERA|read_state_of_memory
+Name read_state_of_memory.100 read_state_of_memory.010 read_state_of_memory.001 
+read_state_of_memory.001 0 0 0 
+read_state_of_memory.010 0 1 1 
+read_state_of_memory.100 1 0 1 
+
+State Machine - |DE1_SoC_CAMERA|write_state_of_memory
+Name write_state_of_memory.100 write_state_of_memory.010 write_state_of_memory.001 
+write_state_of_memory.001 0 0 0 
+write_state_of_memory.010 0 1 1 
+write_state_of_memory.100 1 0 1 
+
+State Machine - |DE1_SoC_CAMERA|I2C_CCD_Config:u8|mSetup_ST
+Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
+mSetup_ST.0000 0 0 0 
+mSetup_ST.0001 1 0 1 
+mSetup_ST.0010 1 1 0 
